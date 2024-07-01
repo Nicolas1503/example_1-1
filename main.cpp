@@ -1,23 +1,27 @@
 #include "mbed.h"
 #include "arm_book_lib.h"
 
+#define LED1 PA_1
+#define BUTTON1 PA_2
+
 int main()
 {
-    DigitalIn gasDetector(D2);
+    DigitalIn BOTON (BUTTON1);
 
     DigitalOut alarmLed(LED1);
 
-    gasDetector.mode(PullDown);
+    BOTON.mode(PullUp);
 
     alarmLed = OFF;
 
     while (true) {
-        if ( gasDetector == ON ) {
+        if ( BOTON == ON ) {
             alarmLed = ON;
         }
         
-        if ( gasDetector == OFF ) {
+        if ( BOTON == OFF ) {
             alarmLed = OFF;
         }
     }
+    
 }
